@@ -81,14 +81,14 @@ List<Instruction> convertInstructions(List<String> input) {
   return instructions;
 }
 
-num solvePart1(int ipReg, List<Instruction> instructions) {
+List<num> solvePart1(int ipReg, List<Instruction> instructions) {
   var regs = [0, 0, 0, 0, 0, 0];
   while (regs[ipReg] < instructions.length) {
     regs = instructions[regs[ipReg]].exec(regs);
     regs[ipReg]++;
   }
   regs[ipReg]--;
-  return regs[0];
+  return regs;
 }
 
 num solvePart2(List<String> input) {
@@ -105,13 +105,20 @@ void main(List<String> arguments) {
   var ip = int.parse(input[0].substring(4));
   var instructions = convertInstructions(input.skip(1).toList());
 
-  print('First part is ${solvePart1(ip, instructions)}');
+  var regs = solvePart1(ip, instructions);
+  print('First part is ${regs[0]}');
 
-  // var r1 = 998; // First part
-  var r1 = 10551398; // Second part
+  // This is the loop that the instructions do. The loop is the same for part 1 and 2, but for 
+  // part 2 the loop limit is much bigger, which makes it unfeasible to run interpreted.
+  // These are the limits for both parts and for the files input and input2
+  // var r1 = 998;        // First part for file `input`
+  // var r1 = 10551398;   // Second part for file `input`
+  //var r1 = 1028;        // First part for file `input2`
+  var r1 = 10551428;      // Second part for file `input2`
   var r0 = 0;
   for (var r4 = 1; r4 <= r1; r4++) {
     if (r1 % r4 == 0)  r0 += r4;
   }
+
   print('Second part is ${r0}');
 }

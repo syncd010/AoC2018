@@ -58,7 +58,8 @@ List<int> solvePart2(int serialNumber) {
 }
 
 void main(List<String> arguments) {
-  int serialNumber = 9306;
+  // int serialNumber = 9306;
+  int serialNumber = 7672;
 
   print('First part is ${solvePart1(serialNumber)}\n');
   print('Second part is ${solvePart2(serialNumber)}\n');

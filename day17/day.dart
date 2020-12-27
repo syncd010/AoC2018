@@ -63,7 +63,7 @@ List<int> getCounts(List<List<String>> board) {
   var waterCount = 0, floodCount = 0;
   var countStarted = false;
   for (var line in board) {
-    print(line.join());
+    //print(line.join());
     if (!countStarted && line.contains(wall)) countStarted = true;
     if (!countStarted) continue;
 

@@ -5,11 +5,12 @@ List<String> readInput(path) {
   return lines.where((l) => (l != null) && (l.length > 0)).toList();
 }
 
-List<int> solvePart1(int input) {
+List<int> solvePart1(String input) {
+  var n = int.parse(input);
   var board = List<int>.from([3, 7]);
   var idx0 = 0, idx1 = 1;
 
-  while (board.length < input + 10) {
+  while (board.length < n + 10) {
     var next = board[idx0] + board[idx1];
     if (next >= 10) board.add(next ~/ 10);
     board.add(next % 10);
@@ -18,10 +19,10 @@ List<int> solvePart1(int input) {
     idx1 = (idx1 + board[idx1] + 1) % board.length;
   }
 
-  return board.sublist(input, input + 10);
+  return board.sublist(n, n + 10);
 }
 
-num solvePart2(int input) {
+num solvePart2(String input) {
   bool endsWith(List<int> list, List<int> suffix) {
     if (list.length < suffix.length) return false;
 
@@ -31,7 +32,7 @@ num solvePart2(int input) {
     return true;
   }
 
-  var listInput = input.toString().split('').map(int.parse).toList();
+  var listInput = input.split('').map(int.parse).toList();
   var board = List<int>.from([3, 7]);
   var idx0 = 0, idx1 = 1;
 
@@ -51,7 +52,8 @@ num solvePart2(int input) {
 }
 
 void main(List<String> arguments) {
-  var input = 260321;
+  //var input = '260321';
+  var input = '084601';
   print('First part is ${solvePart1(input).join()}');
   print('Second part is ${solvePart2(input)}');
 }
